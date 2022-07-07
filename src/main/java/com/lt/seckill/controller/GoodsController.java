@@ -22,14 +22,7 @@ public class GoodsController {
     private IUserService userService;
 
     @RequestMapping("/toList")
-    public String toLogin(HttpServletRequest request, HttpServletResponse response, Model model, @CookieValue("userTicket") String ticket) {
-        if (StringUtils.isEmpty(ticket)) {
-            return "login";
-        }
-        User user = userService.getUserByCookie(ticket,request,response);
-        if (null == user) {
-            return "login";
-        }
+    public String toLogin(Model model,User user) {
         model.addAttribute("user", user);
         return "goodsList";
     }
