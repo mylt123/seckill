@@ -37,7 +37,7 @@ public class SeckillGoods implements Serializable {
     private Long goodsId;
 
     /**
-     * 秒杀家
+     * 秒杀价
      */
     private BigDecimal seckillPrice;
 

@@ -16,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, nickname, pasword, slat, head, register_date, last_login_date, login_count
+        id, nickname, password, salt, head, register_date, last_login_date, login_count
     </sql>
 
 </mapper>
