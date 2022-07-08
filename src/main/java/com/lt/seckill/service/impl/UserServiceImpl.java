@@ -39,12 +39,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public RespBean doLogin(LoginVo loginvo, HttpServletRequest request, HttpServletResponse response) {
         String mobile = loginvo.getMobile();
         String password = loginvo.getPassword();
-//        if(StringUtils.isEmpty(mobile) || StringUtils.isEmpty(password)){
-//            return RespBean.error(RespBeanEnum.LOGIN_ERROR);
-//        }
-//        if(!ValidatorUtil.isMobile(mobile)){
-//            return RespBean.error(RespBeanEnum.MOBILE_ERROR);
-//        }
+
         User user = userMapper.selectById(mobile);
         if(user == null){
             return RespBean.error(RespBeanEnum.LOGIN_ERROR);
@@ -56,7 +51,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         String ticket = UUIDUtil.uuid();
         //将用户信息存入redis中
         redisTemplate.opsForValue().set("user:" + ticket, user);
-        request.getSession().setAttribute(ticket,user);
+        //request.getSession().setAttribute(ticket,user);
         CookieUtil.setCookie(request, response, "userTicket", ticket);
         return RespBean.success(ticket);
     }
