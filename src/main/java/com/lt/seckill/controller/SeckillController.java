@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/seckill")
@@ -37,7 +38,7 @@ public class SeckillController {
         GoodsVo goods = goodsService.findGoodsByGoodsId(goodsId);
         //判断库存
         if(goods.getStockCount() < 1){
-            model.addAttribute("errmsg", RespBeanEnum.EMPTY_STOCK.getMessage());
+            model.addAttribute("errormsg", RespBeanEnum.EMPTY_STOCK.getMessage());
             return "seckillFail";
         }
 
